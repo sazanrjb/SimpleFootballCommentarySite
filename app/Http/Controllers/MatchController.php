@@ -28,6 +28,7 @@ class MatchController extends Controller {
 			\Session::flash('notice','Error');
 			return redirect()->back();
 		}else{
+			\Session::flash('notice','Enjoy the live game');
 			return view('commentary.matchviewer',compact('match',$match));
 		}
 	}
