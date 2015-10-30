@@ -1,0 +1,40 @@
+
+body{
+    background: #eee;
+}
+
+.wrapper{
+    background: #fff;
+    border: 0.5px solid #adadad;
+}
+
+.left{
+    float:left;
+    padding: 5px;
+    border-right: 1px dashed #9d9d9d;
+}
+
+.left li{
+    list-style-type: none;
+}
+
+header{
+    padding-bottom: 10px;    
+}
+
+.content{
+    float: left;
+    padding-left: 20px;
+}
+
+aside li{
+    border-bottom: 1px solid #adadad;
+}
+
+footer{
+    padding-bottom:10px;
+}
+
+.datepicker{
+
+}
