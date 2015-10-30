@@ -2,9 +2,7 @@
 @section('content')
     <div class="container" onload="hello()">
         <aside class="col-md-3 well left">
-            <ul>
-                <li><a href="/" id="newMatchLab">Back To Home</a></li>
-            </ul>
+            <button class="glyphicon glyphicon-home form-control text-info" id="home">Home</button>
         </aside>
 
         <!--INDEX-->
@@ -44,10 +42,10 @@
                             })
                         }
                     </script>
-                <p>
-                        <span id="cArea"></span>
-                        <p></p>
-                </p>
+                            <p>
+                                    <span id="cArea"></span>
+                                    <p></p>
+                            </p>
             </div>
         </div>
 

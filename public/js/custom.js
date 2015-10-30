@@ -7,7 +7,7 @@ $(document).ready(function(){
 // Search Button Animation --------------------------
     $('#searchArea').hide();
 
-    $('#searchButton').click(function(){
+    $('#searchButton').hover(function(){
         $(this).hide();
         $('#searchArea').fadeIn('fast');
         $('#search').focus();

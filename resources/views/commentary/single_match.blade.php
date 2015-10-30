@@ -2,9 +2,7 @@
 @section('content')
     <div class="container">
         <aside class="col-md-3 well left">
-            <ul>
-                <li><a href="/" id="newMatchLab">Back To Home</a></li>
-            </ul>
+            <button class="glyphicon glyphicon-home form-control text-info" id="home">Home</button>
         </aside>
 
         <!--INDEX-->

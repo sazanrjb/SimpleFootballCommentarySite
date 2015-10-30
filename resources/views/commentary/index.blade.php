@@ -5,15 +5,18 @@
     <div class="container">
         <aside class="col-md-3 well left">
             <button class="glyphicon glyphicon-home form-control text-info" id="home">Home</button>
-            <ul>
-                <li><a href="#" id="newMatchLab">New Match</a></li>
-                <li><a href="#" id="pausedMatchesLab">Paused Matches</a></li>
-                <li><a href="#" id="runningMatchesLab">Running Matches</a></li>
-                <li><a href="#" id="closedMatchesLab">Closed Matches</a></li>
-            </ul>
+            @if(\Illuminate\Support\Facades\Auth::check())
+                <ul>
+                    <li><a href="#" id="newMatchLab">New Match</a></li>
+                    <li><a href="#" id="pausedMatchesLab">Paused Matches</a></li>
+                    <li><a href="#" id="runningMatchesLab">Running Matches</a></li>
+                    <li><a href="#" id="closedMatchesLab">Closed Matches</a></li>
+                </ul>
+            @endif
         </aside>
 
-        <!--INDEX-->
+        @if(\Illuminate\Support\Facades\Auth::check())
+                <!--INDEX-->
         <div class="container  workArea col-md-9" id="index">
             @if(Session::has('notice'))
                 <p class="alert alert-info">{{Session::get('notice')}}</p>
@@ -21,7 +24,7 @@
 
             @foreach($errors->all() as $error)
                 <p class="alert alert-info">{{$error}}</p>
-                    @endforeach
+            @endforeach
             <div class="content col-md-12">
                 <table class="table table-responsive table-bordered">
                     <tr>
@@ -52,10 +55,10 @@
                 </select>
                 Description <textarea class="form-control" name="description" placeholder="Description"></textarea>
                 Update by <select name="author" class="form-control">
-                            @foreach($authors as $author)
-                                <option value="{{$author->id}}">{{$author->name}} [{{$author->username}}]</option>
-                            @endforeach
-                        </select> <br>
+                    @foreach($authors as $author)
+                        <option value="{{$author->id}}">{{$author->name}} [{{$author->username}}]</option>
+                    @endforeach
+                </select> <br>
                 <input type="submit" value="submit" class="form-control btn btn-info">
                 {!! Form::close() !!}
             </div>
@@ -74,12 +77,16 @@
                     </tr>
                     @foreach($matches as $match)
                         @if($match->status == "paused" && $match->count()>0)
-                        <tr>
-                            <td>{{$match->title}}</td>
-                            <td>{{$match->description}}</td>
-                            <td>{{$match->date}}</td>
-                            <td><a href="/edit_details/{{$match->id}}"> <i class="glyphicon glyphicon-edit text-info"> </i>Edit</a> | <a href="#"> <i class="glyphicon glyphicon-remove text-danger"> </i>Delete</a> | <a href="/setrunning/{{$match->id}}"> <i class="glyphicon glyphicon-star text-muted"> </i>Set Running</a></td>
-                        </tr>
+                            <tr>
+                                <td>{{$match->title}}</td>
+                                <td>{{$match->description}}</td>
+                                <td>{{$match->date}}</td>
+                                <td><a href="/edit_details/{{$match->id}}"> <i class="glyphicon glyphicon-edit text-info"> </i>Edit</a> |
+                                    {!! Form::open(array('route'=>array('match.destroy','id'=>$match->id),'method'=>'delete')) !!}
+                                    {!! Form::submit('Delete',array('class'=>'btn')) !!}
+                                    {!! Form::close() !!} | <a href="/setrunning/{{$match->id}}">
+                                        <i class="glyphicon glyphicon-star text-muted"> </i>Set Running</a></td>
+                            </tr>
                         @endif
                     @endforeach
                 </table>
@@ -107,10 +114,12 @@
                                 <td>{{$match->date}}</td>
                                 <td>
                                     {{--{!! Form::open(array('route'=>array('match.edit',$match->id))) !!}--}}
-                                        {{--<input type="submit" value="Update" class="btn btn-primary text-info"> |--}}
+                                    {{--<input type="submit" value="Update" class="btn btn-primary text-info"> |--}}
                                     {{--{!! Form::close() !!}--}}
                                     {!! HTML::linkRoute('match.edit', 'Update',array('id'=>$match->id),['class'=>'glyphicon glyphicon-edit']) !!}
-                                    {!! HTML::linkRoute('match.destroy', 'Delete',array('id'=>$match->id),['class'=>'glyphicon glyphicon-remove']) !!}
+                                    {!! Form::open(array('route'=>array('match.destroy','id'=>$match->id),'method'=>'delete')) !!}
+                                    {!! Form::submit('Delete',array('class'=>'btn')) !!}
+                                    {!! Form::close() !!}
                                     <a href="/closematch/{{$match->id}}"> <i class="glyphicon glyphicon-remove text-danger"> </i>Close</a>
                                 </td>
                             </tr>
@@ -144,6 +153,33 @@
             </div>
         </div>
         <!-- END OF CLOSED MATCHES-->
+                @else
+                        <!--RUNNING MATCHES-->
+        <div class="container workArea col-md-9">
+            <div class="content col-md-12">
+                <table class="table table-responsive table-bordered">
+                    <tr>
+                        <th>Match</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                    </tr>
+                    @foreach($matches as $match)
+                        @if($match->status == "running" && $match->count()>0)
+                            <tr>
+                                <td>
+                                {!! HTML::linkRoute('match.index',$match->title,array('id'=>$match->id)) !!}
+                                <td>{{$match->description}}</td>
+                                <td>{{$match->date}}</td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </table>
+            </div>
+        </div>
+        <!-- END OF RUNNING MATCHES-->
+                @endif
+
+
     </div>
 
 @stop

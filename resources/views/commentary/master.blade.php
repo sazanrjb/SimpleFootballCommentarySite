@@ -17,13 +17,20 @@
             <button class="btn btn-primary" style="margin-top: 20px; float: right;" id="searchButton">Search</button>
 
         <div style="margin-top: 20px; float: right;" id="searchArea">
-            <form>
+            {!! Form::open(array('action'=>'MatchController@search','method'=>'post')) !!}
                 <input type="text" name="search" id="search" placeholder="Search Matches">
-                <button class="btn btn-primary">Search</button>
-            </form>
+                {!! Form::submit('Search',array('class'=>'btn btn-primary')) !!}
+            {!! Form::close() !!}
         </div>
 
         </p><br><br>
+        <h3>
+            @if(\Illuminate\Support\Facades\Auth::check())
+                <p class="text-muted">[Admin Area]</p>
+                {!! HTML::link('/logout','Logout',['class'=>'btn btn-success']) !!}
+            @endif
+
+        </h3>
     </header>
     <hr>
 

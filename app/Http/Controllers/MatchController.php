@@ -4,13 +4,16 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Match;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class MatchController extends Controller {
 	protected $match;
 	public function __construct(){
 		$this->match = new Match();
+		$this->middleware('auth',['except'=>'index']);
 	}
 	/**
 	 * Display a listing of the resource.
@@ -132,12 +135,28 @@ class MatchController extends Controller {
 
 	public function editDetail($id){
 		$match = $this->match->find($id);
-		return view('commentary.edit_details')->with('matches',$match);
+		$u = new User();
+		$users = $u->all();
+
+		return view('commentary.edit')->with('match',$match)->with('authors',$users);
 	}
 
-	public function edit_details($id){
+	public function update_detail($id){
+		$match = $this->match->find($id);
+		$input = Input::all();
 
+		$match->title = $input['title'];
+		$match->date = date('Y-m-d',strtotime($input['date']));
+		$match->status = $input['status'];
+		$match->description = $input['description'];
+		$match->uid = $input['author'];
+
+		if($match->save()){
+			\Session::flash('notice','Successfully update');
+			return redirect()->intended('/');
+		}
 	}
+
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -146,7 +165,13 @@ class MatchController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+
+	}
+
+	public function search(){
+		$input = Input::get('search');
+		$item = $this->match->where('title','like','%'.$input.'%')->where('status','=','running')->get();
+		return view('commentary.search')->with('items',$item);
 	}
 
 	/**
@@ -157,7 +182,16 @@ class MatchController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$match = $this->match->find($id);
+		if($match->destroy($id)){
+			\Session::flash('notice','Successfully deleted');
+			return redirect()->intended('/');
+		}
+	}
+
+	public function logout(){
+		Auth::logout();
+		return redirect()->intended('/');
 	}
 
 }

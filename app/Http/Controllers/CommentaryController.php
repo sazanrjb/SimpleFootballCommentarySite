@@ -16,7 +16,7 @@ class CommentaryController extends Controller {
 	protected $commentary;
 	protected $match;
 	public function __construct(){
-		$this->middleware('auth');
+		$this->middleware('auth',['except'=>array('index','getCommentary')]);
 		$this->commentary = new Commentary();
 		$this->match = new Match();
 	}

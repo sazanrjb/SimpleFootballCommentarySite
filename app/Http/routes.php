@@ -18,14 +18,17 @@ Route::get('login','LoginController@index',['middleware'=>'guest']);
 Route::get('logout','CommentaryController@logout');
 Route::post('dologin','LoginController@dologin');
 
-Route::get('/','CommentaryController@index');
 Route::get('/setrunning/{id}','MatchController@setRunning');
 Route::get('/closematch/{id}','MatchController@closeMatch');
 Route::get('/match_detail/{id}','MatchController@matchDetail');
-Route::get('/edit_detail/{id}','MatchController@editDetail');
+Route::get('/edit_details/{id}','MatchController@editDetail');
+Route::post('/update_detail/{id}','MatchController@update_detail');
+Route::post('/search','MatchController@search');
+Route::get('/logout','MatchController@logout');
 Route::resource('/match','MatchController');
-Route::resource('/commentary','CommentaryController');
 
+Route::get('/','CommentaryController@index');
+Route::resource('/commentary','CommentaryController');
 Route::get('/getCommentary','CommentaryController@getCommentary');
 
 Route::controllers([
