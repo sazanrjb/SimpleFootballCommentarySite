@@ -31,10 +31,10 @@
                         <th>Closed Matches</th>
                     </tr>
                     <tr>
-                        <td>3</td>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>0</td>
+                        <td>{{\App\Match::count()}}</td>
+                        <td>{{\App\Match::where('status','=','paused')->count()}}</td>
+                        <td>{{\App\Match::where('status','=','running')->count()}}</td>
+                        <td>{{\App\Match::where('status','=','closed')->count()}}</td>
                     </tr>
                 </table>
             </div>
