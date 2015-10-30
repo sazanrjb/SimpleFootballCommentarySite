@@ -48,7 +48,7 @@ class MatchController extends Controller {
 	{
 		$input = Input::all();
 		$this->match->title = $input['title'];
-		$this->match->date = $input['date'];
+		$this->match->date = date('Y-m-d',strtotime($input['date']));
 		$this->match->status = $input['status'];
 		$this->match->description = $input['description'];
 		$this->match->uid = $input['author'];
@@ -61,6 +61,45 @@ class MatchController extends Controller {
 			return redirect()->back();
 		}
 
+	}
+
+	public function setRunning($id){
+		$match = $this->match->find($id);
+		if(count($match)==0){
+			\Session::flash('notice','Match not found');
+			return redirect()->back();
+		}else{
+			$match->status = 'running';
+			if($match->save()){
+				\Session::flash('notice','Updated successfully');
+				return redirect()->intended('/');
+			}
+		}
+	}
+
+	public function closeMatch($id){
+		$match = $this->match->find($id);
+		if(count($match)==0){
+			\Session::flash('notice','Match not found');
+			return redirect()->back();
+		}else{
+			$match->status = 'closed';
+			if($match->save()){
+				\Session::flash('notice','Updated successfully');
+				return redirect()->back();
+			}
+		}
+	}
+
+	public function matchDetail($id){
+		$match = $this->match->find($id);
+		if(count($match)==0){
+			\Session::flash('notice','Match not found');
+			return redirect()->back();
+		}else{
+				\Session::flash('notice','Updated successfully');
+				return view('commentary.match_details')->with('match',$match);
+		}
 	}
 
 	/**

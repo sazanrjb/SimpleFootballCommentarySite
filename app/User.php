@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	protected $hidden = ['password', 'remember_token'];
 
 	public function match(){
-		return $this->hasMany('App\Match');
+		return $this->hasMany('App\Match','uid');
 	}
 
 }

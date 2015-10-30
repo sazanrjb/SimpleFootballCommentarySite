@@ -78,7 +78,7 @@
                             <td>{{$match->title}}</td>
                             <td>{{$match->description}}</td>
                             <td>{{$match->date}}</td>
-                            <td><a href="#"> <i class="glyphicon glyphicon-edit text-info"> </i>Edit</a> | <a href="#"> <i class="glyphicon glyphicon-remove text-danger"> </i>Delete</a> | <a href="#"> <i class="glyphicon glyphicon-star text-muted"> </i>Set Running</a></td>
+                            <td><a href="#"> <i class="glyphicon glyphicon-edit text-info"> </i>Edit</a> | <a href="#"> <i class="glyphicon glyphicon-remove text-danger"> </i>Delete</a> | <a href="/setrunning/{{$match->id}}"> <i class="glyphicon glyphicon-star text-muted"> </i>Set Running</a></td>
                         </tr>
                         @endif
                     @endforeach
@@ -111,7 +111,7 @@
                                     {{--{!! Form::close() !!}--}}
                                     {!! HTML::linkRoute('match.edit', 'Edit',array('id'=>$match->id),['class'=>'glyphicon glyphicon-edit']) !!}
                                     {!! HTML::linkRoute('match.destroy', 'Delete',array('id'=>$match->id),['class'=>'glyphicon glyphicon-remove']) !!}
-                                    <a href="#"> <i class="glyphicon glyphicon-remove text-danger"> </i>Close</a>
+                                    <a href="/closematch/{{$match->id}}"> <i class="glyphicon glyphicon-remove text-danger"> </i>Close</a>
                                 </td>
                             </tr>
                         @endif
@@ -133,10 +133,10 @@
                     @foreach($matches as $match)
                         @if($match->status == "closed" && $match->count()>0)
                             <tr>
-                                <td>{{$match->title}}</td>
+                                <td>{!! HTML::link('/match_detail/'.$match->id,$match->title) !!}</td>
                                 <td>{{$match->description}}</td>
                                 <td>{{$match->date}}</td>
-                                <td><a href="#"> <a href="#"> <i class="glyphicon glyphicon-remove text-danger"> </i>Delete</a></td>
+                                <td> <a href="#"> <i class="glyphicon glyphicon-remove text-danger"> </i>Delete</a></td>
                             </tr>
                         @endif
                     @endforeach

@@ -7,7 +7,7 @@ class Commentary extends Model {
 	protected $table = 'commentaries';
 
 	public function match(){
-		return $this->belongsTo('App\Match');
+		return $this->belongsTo('App\Match','mid');
 	}
 
 }

@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class CommentaryController extends Controller {
 	protected $commentary;
+	protected $match;
 	public function __construct(){
 		$this->middleware('auth');
 		$this->commentary = new Commentary();
+		$this->match = new Match();
 	}
 	/**
 	 * Display a listing of the resource.
@@ -61,7 +63,10 @@ class CommentaryController extends Controller {
 	}
 
 	public function getCommentary(){
-		$commentary = $this->commentary->orderBy('time','DESC')->get();
+		$id = Input::get('id');
+		$c = $this->match->find($id);
+		$commentary=$c->commentaries;
+//		var_dump($commentary);
 		$comment = array();
 		foreach($commentary as $com){
 			$pool =  "<br>".$com->time.": ".$com->commentary. "<hr>";

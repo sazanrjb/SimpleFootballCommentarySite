@@ -16,7 +16,7 @@
                     <p class="alert alert-info">{{Session::get('notice')}}</p>
                 @endif
                 <h2>{{$match->title}}</h2>
-                <p>{{$match->date}} | Updated by {{$match->author}}</p>
+                <p>{{$match->date}} | Updated by {{$match->users->name}}</p>
                 <blockquote>{{$match->description}}</blockquote>
                     {{--<button id="getc" class="glyphicon glyphicon-refresh"></button>--}}
                     <script>
@@ -37,7 +37,7 @@
                             $.ajax({
                                 url: "/getCommentary",
                                 method: "get",
-                                data: ({id: '{{$match->id}}'}), 
+                                data: ({id: '{{$match->id}}'}),
                                 success: function (results) {
                                     $('#cArea').html(results);
                                 }

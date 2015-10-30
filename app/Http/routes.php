@@ -19,6 +19,9 @@ Route::get('logout','CommentaryController@logout');
 Route::post('dologin','LoginController@dologin');
 
 Route::get('/','CommentaryController@index');
+Route::get('/setrunning/{id}','MatchController@setRunning');
+Route::get('/closematch/{id}','MatchController@closeMatch');
+Route::get('/match_detail/{id}','MatchController@matchDetail');
 Route::resource('/match','MatchController');
 Route::resource('/commentary','CommentaryController');
 
