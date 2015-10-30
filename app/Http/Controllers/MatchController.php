@@ -130,6 +130,14 @@ class MatchController extends Controller {
 		}
 	}
 
+	public function editDetail($id){
+		$match = $this->match->find($id);
+		return view('commentary.edit_details')->with('matches',$match);
+	}
+
+	public function edit_details($id){
+
+	}
 	/**
 	 * Update the specified resource in storage.
 	 *

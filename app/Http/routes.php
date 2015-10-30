@@ -22,6 +22,7 @@ Route::get('/','CommentaryController@index');
 Route::get('/setrunning/{id}','MatchController@setRunning');
 Route::get('/closematch/{id}','MatchController@closeMatch');
 Route::get('/match_detail/{id}','MatchController@matchDetail');
+Route::get('/edit_detail/{id}','MatchController@editDetail');
 Route::resource('/match','MatchController');
 Route::resource('/commentary','CommentaryController');
 

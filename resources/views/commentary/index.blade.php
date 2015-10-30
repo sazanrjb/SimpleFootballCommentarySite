@@ -78,7 +78,7 @@
                             <td>{{$match->title}}</td>
                             <td>{{$match->description}}</td>
                             <td>{{$match->date}}</td>
-                            <td><a href="#"> <i class="glyphicon glyphicon-edit text-info"> </i>Edit</a> | <a href="#"> <i class="glyphicon glyphicon-remove text-danger"> </i>Delete</a> | <a href="/setrunning/{{$match->id}}"> <i class="glyphicon glyphicon-star text-muted"> </i>Set Running</a></td>
+                            <td><a href="/edit_details/{{$match->id}}"> <i class="glyphicon glyphicon-edit text-info"> </i>Edit</a> | <a href="#"> <i class="glyphicon glyphicon-remove text-danger"> </i>Delete</a> | <a href="/setrunning/{{$match->id}}"> <i class="glyphicon glyphicon-star text-muted"> </i>Set Running</a></td>
                         </tr>
                         @endif
                     @endforeach
@@ -109,7 +109,7 @@
                                     {{--{!! Form::open(array('route'=>array('match.edit',$match->id))) !!}--}}
                                         {{--<input type="submit" value="Update" class="btn btn-primary text-info"> |--}}
                                     {{--{!! Form::close() !!}--}}
-                                    {!! HTML::linkRoute('match.edit', 'Edit',array('id'=>$match->id),['class'=>'glyphicon glyphicon-edit']) !!}
+                                    {!! HTML::linkRoute('match.edit', 'Update',array('id'=>$match->id),['class'=>'glyphicon glyphicon-edit']) !!}
                                     {!! HTML::linkRoute('match.destroy', 'Delete',array('id'=>$match->id),['class'=>'glyphicon glyphicon-remove']) !!}
                                     <a href="/closematch/{{$match->id}}"> <i class="glyphicon glyphicon-remove text-danger"> </i>Close</a>
                                 </td>
