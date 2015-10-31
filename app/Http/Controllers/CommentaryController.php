@@ -65,11 +65,11 @@ class CommentaryController extends Controller {
 	public function getCommentary(){
 		$id = Input::get('id');
 		$c = $this->match->find($id);
-		$commentary=$c->commentaries;
+		$commentary=$c->commentaries()->orderBy('time','DESC')->get();
 //		var_dump($commentary);
 		$comment = array();
 		foreach($commentary as $com){
-			$pool =  "<br>".$com->time.": ".$com->commentary. "<hr>";
+			$pool =  "<br>".$com->time."' ".$com->commentary. "<hr>";
 			array_push($comment,$pool);
 
 		}

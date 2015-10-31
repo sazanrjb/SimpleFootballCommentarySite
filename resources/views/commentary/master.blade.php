@@ -28,6 +28,8 @@
             @if(\Illuminate\Support\Facades\Auth::check())
                 <p class="text-muted">[Admin Area]</p>
                 {!! HTML::link('/logout','Logout',['class'=>'btn btn-success']) !!}
+                @else
+                {!! HTML::link('/login','Login',['class'=>'btn btn-success']) !!}
             @endif
 
         </h3>

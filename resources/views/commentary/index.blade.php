@@ -145,7 +145,9 @@
                                 <td>{!! HTML::link('/match_detail/'.$match->id,$match->title) !!}</td>
                                 <td>{{$match->description}}</td>
                                 <td>{{$match->date}}</td>
-                                <td> <a href="#"> <i class="glyphicon glyphicon-remove text-danger"> </i>Delete</a></td>
+                                <td>{!! Form::open(array('route'=>array('match.destroy','id'=>$match->id),'method'=>'delete')) !!}
+                                {!! Form::submit('Delete',array('class'=>'btn')) !!}
+                                {!! Form::close() !!}</td>
                             </tr>
                         @endif
                     @endforeach

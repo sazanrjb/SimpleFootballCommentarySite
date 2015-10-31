@@ -87,9 +87,14 @@ class MatchController extends Controller {
 			\Session::flash('notice','Match not found');
 			return redirect()->back();
 		}else{
-			$match->status = 'closed';
-			if($match->save()){
-				\Session::flash('notice','Updated successfully');
+			if($match->status == 'running'){
+				$match->status = 'closed';
+				if($match->save()){
+					\Session::flash('notice','Updated successfully');
+					return redirect()->back();
+				}
+			}else{
+				\Session::flash('notice','Match not found');
 				return redirect()->back();
 			}
 		}

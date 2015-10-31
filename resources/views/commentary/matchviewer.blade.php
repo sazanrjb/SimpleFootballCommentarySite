@@ -19,7 +19,7 @@
                     {{--<button id="getc" class="glyphicon glyphicon-refresh"></button>--}}
                     <script>
 
-                        setTimeout("location.reload(true);",3000);
+//                        setTimeout("location.reload(true);",3000);
 
                             {{--$.ajax({--}}
                                 {{--url: "/getCommentary",--}}
@@ -31,7 +31,7 @@
                             {{--})--}}
 
 
-                        window.onload = function(){
+                       setInterval(function(){
                             $.ajax({
                                 url: "/getCommentary",
                                 method: "get",
@@ -40,7 +40,7 @@
                                     $('#cArea').html(results);
                                 }
                             })
-                        }
+                        },3000)
                     </script>
                             <p>
                                     <span id="cArea"></span>
