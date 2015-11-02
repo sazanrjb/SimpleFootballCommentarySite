@@ -1,12 +1,31 @@
 
 body{
     background: #eee;
+    background-image:url('../img/football.jpg');
+    background-attachment: scroll;
+    background-repeat: round;
+    background-position: center;
+
+
+    /*-webkit-filter: blur(5px);*/
+    /*-moz-filter: blur(5px);*/
+    /*-o-filter: blur(5px);*/
+    /*-ms-filter: blur(5px);*/
+    /*filter: blur(5px);*/
 }
 
 .wrapper{
-    background: #fff;
+    /*background: #fff;*/
+    background: #eee;
     border: 0.5px solid #adadad;
+    opacity: 0.92;
+    filter: alpha(opacity=92); /* For IE8 and earlier */
 }
+
+/*img {*/
+    /*opacity: 0.4;*/
+    /*filter: alpha(opacity=40); /!* For IE8 and earlier *!/*/
+/*}*/
 
 .left{
     float:left;

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
@@ -52,68 +53,35 @@ class UserController extends Controller {
 		$user->delete();
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+	public function changePassword(){
+		return view('commentary.changepassword');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+	public function doChangePassword(Requests\UserRequest $userRequest)
 	{
-		//
-	}
+		if (Input::get('newPassword') != Input::get('confirmPassword')) {
+			\Session::flash('notice', 'Passwords donot match');
+			return redirect()->back();
+		} else {
+			$check = Auth::attempt(array(
+				'password' => $userRequest['oldPassword']
+			));
+//			var_dump(Hash::make($userRequest['oldPassword']));
+//			echo "<br>";
+//			var_dump(Auth::user()->password);
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+			if($check){
+				$users = $this->user->find(Auth::id());
+				$users->password = Hash::make($userRequest['newPassword']);
+				if($users->save()){
+					\Session::flash('notice', 'Successfully updated');
+					return redirect()->back();
+				}
+			}else{
+				\Session::flash('notice', 'Incorrect Password');
+				return redirect()->back();
+			}
+		}
 	}
 
 }

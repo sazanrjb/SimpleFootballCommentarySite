@@ -11,7 +11,7 @@
 <body>
 <div class="container wrapper">
     <header>
-        <h2 style="float: left;"><a href="/">Simple Football Commentary System</a></h2>
+        <h2 style="float: left;"><a href="/" class="text-warning">Simple Football Commentary System</a></h2>
 
         <p>
             <button class="btn btn-primary" style="margin-top: 20px; float: right;" id="searchButton">Search</button>
@@ -26,9 +26,11 @@
         </p><br><br>
         <h3>
             @if(\Illuminate\Support\Facades\Auth::check())
-                <p class="text-muted">[Admin Area]</p>
+                <blockquote class="text-warning text-left">Admin Area</blockquote>
                 {!! HTML::link('/users','Manage Users',['class'=>'btn btn-info']) !!}
                 {!! HTML::link('/logout','Logout',['class'=>'btn btn-success']) !!}
+                {!! HTML::link('/changepassword','Change Password',['class'=>'btn btn-danger']) !!}
+
                 @else
                 {!! HTML::link('/login','Login',['class'=>'btn btn-success']) !!}
             @endif

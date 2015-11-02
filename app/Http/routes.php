@@ -32,6 +32,8 @@ Route::get('/getusers','UserController@getUsers');
 Route::post('/insertuser','UserController@insertUser');
 Route::post('/updateuser','UserController@updateUser');
 Route::post('/deleteuser','UserController@deleteUser');
+Route::get('/changepassword','UserController@changePassword');
+Route::post('/dochangepassword','UserController@doChangePassword');
 
 Route::get('/','CommentaryController@index');
 Route::resource('/commentary','CommentaryController');
