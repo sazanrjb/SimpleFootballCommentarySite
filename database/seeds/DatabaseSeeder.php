@@ -14,7 +14,26 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		// $this->call('UserTableSeeder');
+		 $this->call('UserTableSeeder');
 	}
 
+}
+
+class UserTableSeeder extends Seeder{
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		DB::table('users')->delete();
+
+		\App\User::create(array(
+			'name' => 'Sajan Rajbhandari',
+			'username' => 'sazanrjb',
+			'password' => Hash::make('test123')
+		));
+
+	}
 }

@@ -32,6 +32,7 @@
 
 
                        setInterval(function(){
+//                           $.ajaxSetup({ cache: false });
                             $.ajax({
                                 url: "/getCommentary",
                                 method: "get",

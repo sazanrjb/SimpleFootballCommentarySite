@@ -27,6 +27,12 @@ Route::post('/search','MatchController@search');
 Route::get('/logout','MatchController@logout');
 Route::resource('/match','MatchController');
 
+Route::get('/users','UserController@index');
+Route::get('/getusers','UserController@getUsers');
+Route::post('/insertuser','UserController@insertUser');
+Route::post('/updateuser','UserController@updateUser');
+Route::post('/deleteuser','UserController@deleteUser');
+
 Route::get('/','CommentaryController@index');
 Route::resource('/commentary','CommentaryController');
 Route::get('/getCommentary','CommentaryController@getCommentary');

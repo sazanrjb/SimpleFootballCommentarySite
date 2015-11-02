@@ -17,7 +17,7 @@ class CreateCommentariesTable extends Migration {
 			$table->increments('id');
 			$table->text('commentary');
 			$table->integer('mid')->unsigned();
-			$table->foreign('mid')->references('id')->on('matches');
+			$table->foreign('mid')->references('id')->on('matches')->onUpdate('cascade')->onDelete('cascade');;
 			$table->integer('time');
 			$table->timestamps();
 		});

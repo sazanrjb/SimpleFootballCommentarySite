@@ -20,7 +20,7 @@ class CreateMatchesTable extends Migration {
 			$table->string('status');
 			$table->text('description');
 			$table->integer('uid')->unsigned();
-			$table->foreign('uid')->references('id')->on('users');
+			$table->foreign('uid')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

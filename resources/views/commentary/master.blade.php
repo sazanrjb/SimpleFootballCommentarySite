@@ -27,6 +27,7 @@
         <h3>
             @if(\Illuminate\Support\Facades\Auth::check())
                 <p class="text-muted">[Admin Area]</p>
+                {!! HTML::link('/users','Manage Users',['class'=>'btn btn-info']) !!}
                 {!! HTML::link('/logout','Logout',['class'=>'btn btn-success']) !!}
                 @else
                 {!! HTML::link('/login','Login',['class'=>'btn btn-success']) !!}
@@ -46,6 +47,8 @@
 </body>
 {!!HTML::script('js/jquery-1.11.3.min.js')!!}
 {!!HTML::script('js/jquery-ui.min.js')!!}
+{!! HTML::script('js/angular-resource.min.js') !!}
+{!! HTML::script('js/angular-route.min.js') !!}
 {!!HTML::script('js/custom.js')!!}
 
 </html>
