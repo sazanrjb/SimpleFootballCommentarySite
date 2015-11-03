@@ -81,10 +81,10 @@
                                 <td>{{$match->title}}</td>
                                 <td>{{$match->description}}</td>
                                 <td>{{$match->date}}</td>
-                                <td><a href="/edit_details/{{$match->id}}"> <i class="glyphicon glyphicon-edit text-info"> </i>Edit</a> |
+                                <td><a href="/edit_details/{{$match->id}}"> <i class="glyphicon glyphicon-edit text-info"> </i>Edit</a>
                                     {!! Form::open(array('route'=>array('match.destroy','id'=>$match->id),'method'=>'delete')) !!}
-                                    {!! Form::submit('Delete',array('class'=>'btn')) !!}
-                                    {!! Form::close() !!} | <a href="/setrunning/{{$match->id}}">
+                                    {!! Form::submit('Delete',array('class'=>'btn btn-danger')) !!}
+                                    {!! Form::close() !!}  <a href="/setrunning/{{$match->id}}">
                                         <i class="glyphicon glyphicon-star text-muted"> </i>Set Running</a></td>
                             </tr>
                         @endif
@@ -183,6 +183,10 @@
 
 
     </div>
+
+    <script>
+        document.getElementById("title").innerHTML = "Simple Football Commentary System";
+    </script>
 
 @stop
 

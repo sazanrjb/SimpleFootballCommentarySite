@@ -69,4 +69,8 @@
     {{--</script>--}}
     {!!HTML::script('js/jquery-1.11.3.min.js')!!}
 
+    <script>
+        document.getElementById("title").innerHTML = "Match Viewer";
+    </script>
+
 @stop

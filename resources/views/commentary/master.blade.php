@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title id="title"></title>
 
     {!! HTML::style('css/bootstrap.min.css') !!}
     {!! HTML::style('css/jquery-ui.min.css') !!}

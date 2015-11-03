@@ -118,4 +118,8 @@
         })
 
     </script>
+
+    <script>
+        document.getElementById("title").innerHTML = "Users";
+    </script>
 @stop

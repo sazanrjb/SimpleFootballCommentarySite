@@ -33,6 +33,8 @@
 
 
     </div>
-
+    <script>
+        document.getElementById("title").innerHTML = "Search";
+    </script>
 @stop
 

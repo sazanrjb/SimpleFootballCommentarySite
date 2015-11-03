@@ -5,12 +5,6 @@
     <div class="container">
         <aside class="col-md-3 well left">
             <button class="glyphicon glyphicon-home form-control text-info" id="home">Home</button>
-            <ul>
-                <li><a href="#" id="newMatchLab">New Match</a></li>
-                <li><a href="#" id="pausedMatchesLab">Paused Matches</a></li>
-                <li><a href="#" id="runningMatchesLab">Running Matches</a></li>
-                <li><a href="#" id="closedMatchesLab">Closed Matches</a></li>
-            </ul>
         </aside>
 
         <!--NEW MATCH-->
@@ -35,6 +29,10 @@
         </div>
         <!-- END OF NEW MATCH-->
     </div>
+
+    <script>
+        document.getElementById("title").innerHTML = "Edit";
+    </script>
 
 @stop
 

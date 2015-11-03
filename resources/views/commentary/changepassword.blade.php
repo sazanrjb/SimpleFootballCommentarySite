@@ -26,4 +26,8 @@
         </div>
 
     </div>
+
+    <script>
+        document.getElementById("title").innerHTML = "Change Password";
+    </script>
 @stop

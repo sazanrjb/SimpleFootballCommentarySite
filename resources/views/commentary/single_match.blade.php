@@ -29,4 +29,8 @@
         </div>
 
     </div>
+
+    <script>
+        document.getElementById("title").innerHTML = "Update Commentary";
+    </script>
 @stop

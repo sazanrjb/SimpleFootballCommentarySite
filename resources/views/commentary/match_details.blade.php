@@ -22,4 +22,7 @@
     </div>
 
 </div>
+<script>
+    document.getElementById("title").innerHTML = "Match Details";
+</script>
 @stop
