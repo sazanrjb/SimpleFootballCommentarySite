@@ -1,0 +1,6 @@
+{
+  "name": "Simplefootballcommentarysite",
+  "tagline": "Simple Site to update realtime football commentary.",
+  "body": "### Simple Football Commentary Site\r\nA simple site made using Laravel Framework to view football score with commentary without needing to refresh the browser.\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
